@@ -1,7 +1,7 @@
 <template>
-  <article class="pages-checkout">
+  <BaseArticle class="pages-checkout">
     Checkout
-  </article>
+  </BaseArticle>
 </template>
 
 <script>
@@ -27,7 +27,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

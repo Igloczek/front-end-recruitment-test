@@ -1,18 +1,15 @@
 <template>
-  <article class="pages-index">
-    <h1 class="pages-index__header pages-index__header--1">
-      Hi SNOW.DOG team!
-    </h1>
-    <p class="pages-index__text">
+  <BaseArticle class="pages-index">
+    <BaseHeader
+      type="1"
+      text="Hi SNOW.DOG team!"
+    />
+    <BaseParagraph>
       Here you can find links to Tasks.
-    </p>
-    <ul
-      class="pages-index__list"
-      v-if="paths.length > 0"  
-    >
-      <li
+    </BaseParagraph>
+    <BaseList>
+      <BaseListItem
         v-for="(path, index) in paths"
-        class="pages-index__list-item"
         :key="index"
       >
         <router-link
@@ -20,9 +17,9 @@
           :to="path.to"
           v-text="path.label"
         />
-      </li>
-    </ul>
-  </article>
+      </BaseListItem>
+    </BaseList>
+  </BaseArticle>
 </template>
 
 <script>
