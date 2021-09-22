@@ -15,6 +15,7 @@ body:before {
   right: 0;
   height: 6px;
   position: absolute;
+  z-index: 9;
 }
 
 a {
