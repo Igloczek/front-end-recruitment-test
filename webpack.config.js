@@ -45,7 +45,7 @@ Encore.setPublicPath('/assets')
 | entrypoints.
 |
 */
-Encore.addEntry('app', './frontend/assets/js/app.js')
+Encore.addEntry('app', './frontend/main.js')
 
 /*
 |--------------------------------------------------------------------------
@@ -74,7 +74,7 @@ Encore.addEntry('app', './frontend/assets/js/app.js')
 | https://webpack.js.org/plugins/split-chunks-plugin/
 |
 */
-// Encore.splitEntryChunks()
+Encore.splitEntryChunks()
 
 /*
 |--------------------------------------------------------------------------
@@ -169,7 +169,7 @@ Encore.configureDevServerOptions((options) => {
 | PostCSS or CSS.
 |
 */
-// Encore.enablePostCssLoader()
+Encore.enablePostCssLoader()
 // Encore.configureCssLoader(() => {})
 
 /*
@@ -181,11 +181,7 @@ Encore.configureDevServerOptions((options) => {
 | sure to install the required dependencies.
 |
 */
-// Encore.enableVueLoader(() => {}, {
-//   version: 3,
-//   runtimeCompilerBuild: false,
-//   useJsx: false
-// })
+Encore.enableVueLoader(() => {}, { runtimeCompilerBuild: true })
 
 /*
 |--------------------------------------------------------------------------

@@ -21,30 +21,21 @@
 import Route from '@ioc:Adonis/Core/Route'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
+/**
+ * On PROD probably only "/" route will be needed
+ * .htaccess file needed here!
+ */
+
 Route.get('/', async ({ view }) => {
   return view.render('index')
 })
 
 Route.get('/bacon', async ({ view }) => {
-  return view.render('bacon')
+  return view.render('index')
 })
 
 Route.get('/checkout', async ({ view }) => {
-  const state = {
-    cart: {
-      items: [
-        { name: 'Apple Watch Sport', price: 580 },
-        { name: 'Modern Buckle', price: 380 },
-      ],
-      totals: {
-        subTotal: 960,
-        tax: 0,
-        grandTotal: 960,
-      },
-    },
-  }
-
-  return view.render('index', state)
+  return view.render('index')
 })
 
 Route.post('/order', async ({ request, response }) => {
