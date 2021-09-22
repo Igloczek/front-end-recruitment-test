@@ -7,11 +7,9 @@
 <script>
 export default {
   name: 'App',
+  metaInfo: {
+    title: 'App',
+    titleTemplate: '%s | My Recruitment Task'
+  },
 }
 </script>
-
-<style>
-.app {
-  font-size: 2em;
-}
-</style>

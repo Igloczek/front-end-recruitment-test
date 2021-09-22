@@ -1,12 +1,15 @@
 <template>
-  <div class="pages-checkout">
+  <article class="pages-checkout">
     Checkout
-  </div>
+  </article>
 </template>
 
 <script>
 export default {
-  name: 'Checkout',
+  name: 'pagesCheckout',
+  metaInfo: {
+    title: 'Checkout',
+  },
   data() {
     return {
       cart: {

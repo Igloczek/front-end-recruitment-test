@@ -1,12 +1,15 @@
 <template>
-  <div class="pages-bacon">  
+  <article class="pages-bacon">  
     Bacon!
-  </div>
+  </article>
 </template>
 
 <script>
 export default {
-  name: 'pages-bacon',
+  name: 'pagesBacon',
+  metaInfo: {
+    title: 'Bacon Factory',
+  },
 }
 </script>
 
