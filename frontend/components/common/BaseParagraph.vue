@@ -1,7 +1,7 @@
 <template>
   <p
     class="base-paragraph"
-    data-test="base-paragrah"
+    data-test="base-paragraph"
   >
     <slot />
   </p>

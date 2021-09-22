@@ -2,6 +2,7 @@
   <component
     :is="sanitizedHeaderTag"
     :class="classNames"
+    data-test="base-header"
     v-text="text"
   />
 </template>
