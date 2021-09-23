@@ -12,7 +12,7 @@
         v-for="(path, index) in paths"
         :key="index"
       >
-        <router-link
+        <RouterLink
           class="pages-index__link"
           :to="path.to"
           v-text="path.label"
