@@ -1,0 +1,14 @@
+.summary-text {
+  display: grid;
+  font-size: 15px;
+  grid-template-columns: 1fr 80px;
+  align-items: flex-start;
+}
+
+.summary-text__value {
+  text-align: right;
+}
+
+.summary-text__value::before {
+  content: '$ ';
+}
