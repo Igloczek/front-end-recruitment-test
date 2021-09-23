@@ -6,5 +6,12 @@ body {
   --base-font-family: 'Poppins', sans-serif;
   --base-animation-time: 0.5s;
 
+  --checkout-background-color: #f4f4f4;
   --checkout-font-family: 'Roboto', sans-serif;
+  --checkout-border-radius: 4px;
+  --checkout-box-shadow: 0 2px 0 #dcdcdc;
+
+  --checkout-summary-header-color: black;
+  --checkout-summary-background-color: #fff;
+  --checkout-summary-inner-border: 1px dashed #dcdcdc;
 }
