@@ -51,6 +51,6 @@ describe('BaseHeader', () => {
     })
     const baseHeader = wrapper.find('[data-test="base-header"]')
     const baseHeaderClasses = baseHeader.classes()
-    expect(baseHeaderClasses.toString()).toContain(`--${type}`)
+    expect(baseHeaderClasses).toHaveLength(2)
   })
 })
