@@ -6,26 +6,27 @@
           :type="4"
           text="Your order"
         />
-        <template v-for="(items, index) in cart.items">
+        <template v-for="(items, index) in items">
           <SummaryText
             :key="index"
             :name="items.name"
-            :value="items.price.toString()"
+            :value="items.price"
           />
         </template>
       </SummarySection>
       <SummarySection :featured="true">
         <SummaryText
+          :decimalNumbers="2"
           name="Total purchases"
-          :value="cart.totals.subTotal.toFixed(2)"
+          :value="subTotal"
         />
         <SummaryText
           name="Estimated tax"
-          :value="cart.totals.tax.toString()"
+          :value="tax"
         />
       </SummarySection>
       <SummarySection class="summary__grand-total">
-        <SummaryTextTotal name="Total" :value="cart.totals.grandTotal.toString()" />
+        <SummaryTextTotal name="Total" :value="grandTotal" />
       </SummarySection>
     </div>
   </aside>
@@ -62,6 +63,20 @@ export default {
           return false
         }
       }
+    }
+  },
+  computed: {
+    grandTotal() {
+      return this.cart.totals.grandTotal
+    },
+    items() {
+      return this.cart.items
+    },
+    subTotal() {
+      return this.cart.totals.subTotal
+    },
+    tax() {
+      return this.cart.totals.tax
     }
   }
 }

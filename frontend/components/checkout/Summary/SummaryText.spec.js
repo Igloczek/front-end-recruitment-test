@@ -6,7 +6,7 @@ describe('SummaryText', () => {
     const wrapper = mount(SummaryText, {
       propsData: {
         name: 'Name',
-        value: 'Value',
+        value: 900,
       },
     })
     expect(wrapper.find('[data-test="summary-text"]').isVisible()).toBeTruthy()
@@ -17,20 +17,32 @@ describe('SummaryText', () => {
     const wrapper = mount(SummaryText, {
       propsData: {
         name: propText,
-        value: 'Value',
+        value: 900,
       },
     })
     expect(wrapper.html()).toContain(propText)
   })
 
   test('has value prop & renders it', () => {
-    const propText = 'This is prop value test!'
+    const propValue = 900
     const wrapper = mount(SummaryText, {
       propsData: {
         name: 'Name',
-        value: propText,
+        value: propValue,
       },
     })
-    expect(wrapper.html()).toContain(propText)
+    expect(wrapper.html()).toContain(propValue.toString())
+  })
+
+  test('has decimalNumber prop & use it', () => {
+    const propValue = 900
+    const wrapper = mount(SummaryText, {
+      propsData: {
+        name: 'Name',
+        value: propValue,
+        decimalNumbers: 3,
+      },
+    })
+    expect(wrapper.html()).toContain('900.000')
   })
 })

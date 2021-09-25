@@ -9,7 +9,7 @@
     />
     <span
       class="summary-text__value"
-      v-text="value"
+      v-text="valueWithDecimalNumbers"
     />
   </div>
 </template>
@@ -23,8 +23,17 @@ export default {
       required: true,
     },
     value: {
-      type: String,
+      type: Number,
       required: true,
+    },
+    decimalNumbers: {
+      type: Number,
+      default: 0,
+    }
+  },
+  computed: {
+    valueWithDecimalNumbers() {
+      return this.value.toFixed(this.decimalNumbers);
     }
   }
 }
