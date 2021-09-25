@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import routeNames from '../router/names.js'
+import routeNames from '../router/names'
 import BaconImage from '../components/baconFactory/BaconImage.vue'
 import BaconButton from '../components/baconFactory/BaconButton.vue'
 
