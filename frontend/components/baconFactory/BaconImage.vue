@@ -3,7 +3,7 @@
     class="bacon-image"
     data-test="bacon-image"
   >
-    <img src="/images/bacon.jpg" alt="Delicous Bacon Image" />
+    <img src="/images/bacon.jpg" :alt="$t('pages.bacon.baconImageAlt')" />
   </picture>
 </template>
 

@@ -4,7 +4,7 @@
       <SummarySection class="summary__cart">
         <SummaryHeader
           :type="4"
-          text="Your order"
+          :text="$t('pages.checkout.summary.header')"
         />
         <template v-for="(items, index) in items">
           <SummaryText
@@ -17,16 +17,19 @@
       <SummarySection :featured="true">
         <SummaryText
           :decimalNumbers="2"
-          name="Total purchases"
+          :name="$t('pages.checkout.summary.totalPurchases')"
           :value="subTotal"
         />
         <SummaryText
-          name="Estimated tax"
+          :name="$t('pages.checkout.summary.estimatedTax')"
           :value="tax"
         />
       </SummarySection>
       <SummarySection class="summary__grand-total">
-        <SummaryTextTotal name="Total" :value="grandTotal" />
+        <SummaryTextTotal
+          :name="$t('pages.checkout.summary.grandTotal')"
+          :value="grandTotal"
+        />
       </SummarySection>
     </div>
   </aside>

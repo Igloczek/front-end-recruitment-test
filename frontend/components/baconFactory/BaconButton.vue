@@ -4,7 +4,8 @@
     type="button"
     data-test="bacon-button"
     @click="$emit('click')"
-  >Yeah, I want more bacon!</button>
+    v-text="$t('pages.bacon.iWantMoreBaconButton')"
+  />
 </template>
 
 <script>

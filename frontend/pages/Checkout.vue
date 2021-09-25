@@ -15,8 +15,10 @@ import Summary from '../components/checkout/Summary/Summary.vue'
 
 export default {
   name: 'pagesCheckout',
-  metaInfo: {
-    title: 'Checkout',
+  metaInfo() {
+    return {
+      title: this.$t('pages.checkout.title')
+    }
   },
   components: {
     Summary,

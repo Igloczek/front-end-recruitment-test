@@ -14,8 +14,10 @@ import './assets/app.css'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueMeta from 'vue-meta'
+
 import App from './App.vue'
 import router from './router/router'
+import i18n from './i18n/i18n'
 
 Vue.use(VueRouter)
 Vue.use(VueMeta)
@@ -30,5 +32,6 @@ requireComponent.keys().forEach(fileName => {
 
 new Vue({
   router,
+  i18n,
   render: h => h(App),
 }).$mount('#app')

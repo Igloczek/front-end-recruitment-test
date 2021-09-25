@@ -1,12 +1,10 @@
 <template>
   <BaseArticle class="pages-index">
     <BaseHeader
-      type="1"
-      text="Hi SNOW.DOG team!"
+      :type="1"
+      :text="$t('pages.index.welcomeHeader')"
     />
-    <BaseParagraph>
-      Here you can find links to Tasks.
-    </BaseParagraph>
+    <BaseParagraph v-text="$t('pages.index.welcomeText')" />
     <BaseList>
       <BaseListItem
         v-for="(path, index) in paths"
@@ -25,19 +23,21 @@
 <script>
 export default {
   name: 'pagesIndex',
-  metaInfo: {
-    title: 'Homepage',
+  metaInfo() {
+    return {
+      title: this.$t('pages.index.title')
+    }
   },
   computed: {
     paths() {
       return [
         {
           to: '/bacon',
-          label: 'Go to /bacon (Task 1)',
+          label: this.$t('pages.index.taskBaconLinkLabel'),
         },
         {
           to: '/checkout',
-          label: 'Go to /checkout (Task 2, 3, 4)'
+          label: this.$t('pages.index.taskCheckoutLinkLabel'),
         }
       ]
     }

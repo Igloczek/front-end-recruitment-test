@@ -24,8 +24,10 @@ const SHOW_EXCEPTION_AND_CLOSE = 'showExceptionAndClose'
 
 export default {
   name: 'pagesBacon',
-  metaInfo: {
-    title: 'Bacon Factory',
+  metaInfo() {
+    return {
+      title: this.$t('pages.bacon.title')
+    }
   },
   components: {
     BaconImage,
@@ -68,7 +70,8 @@ export default {
       }
     },
     [SHOW_EXCEPTION_AND_CLOSE]() {
-      alert('Unhandled exception at 0x000BAC0N in Yeah_I_Want_More_Bacon.exe: 0x0SNOWDOG: Stack overflow (parameters: 0x0TOOMUCH, 0x000BAC0N). Please click OK to kill the process.');
+      const text = this.$t('pages.bacon.alertText')
+      alert(text);
       this.$router.replace({
 			  name: routeNames.PAGE_HOME,
 			})

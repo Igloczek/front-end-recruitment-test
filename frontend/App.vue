@@ -7,9 +7,12 @@
 <script>
 export default {
   name: 'App',
-  metaInfo: {
-    title: 'App',
-    titleTemplate: '%s | My Recruitment Task'
+  metaInfo() {
+    const titleSuffix = this.$t('common.titleSuffix')
+    return {
+      title: this.$t('common.titleDefault'),
+      titleTemplate: `%s | ${titleSuffix}`
+    }
   },
 }
 </script>
