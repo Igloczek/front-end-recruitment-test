@@ -13,12 +13,7 @@
         class="steps-section__title"
         v-text="title"
       />
-      <span
-        aria-hidden="true"
-        class="steps-section__icon"
-      >
-        <slot name="header-icon" />
-      </span>
+      <slot name="header-icon" />
     </h2>
     <div class="steps-section__wrapper">
       <slot />
@@ -46,7 +41,7 @@ export default {
 .steps-section__header {
   display: grid;
   gap: var(--checkout-steps-header-gap-size);
-  grid-template: 1fr / min-content 1fr min-content;
+  grid-template: 1fr / min-content minmax(0, max-content) min-content;
   align-items: center; 
   margin: 0 0 20px 0;
 }
@@ -68,11 +63,6 @@ export default {
   text-transform: uppercase;
   font-size: 14px;
   color: var(--checkout-steps-header-color);
-}
-
-.steps-section__icon {
-  fill: var(--checkout-steps-header-icon-color);
-  color: var(--checkout-steps-header-icon-color);
 }
 
 .steps-section__wrapper {
