@@ -21,4 +21,9 @@ body {
   --checkout-summary-header-color: black;
   --checkout-summary-background-color: #fff;
   --checkout-summary-inner-border: 1px dashed #dcdcdc;
+
+  --checkout-form-error-border: 1px solid #e74c3c;
+  --checkout-form-background: white;
+  --checkout-form-label-color: #484848;
+  --checkout-form-label-font-size: 12px;
 }
