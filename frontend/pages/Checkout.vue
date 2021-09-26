@@ -54,6 +54,7 @@ export default {
   max-width: 960px;
   margin: 0 auto;
   padding: 48px;
+  align-items: start;
 }
 
 @media screen and (min-width: 768px) {
