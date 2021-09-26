@@ -1,12 +1,23 @@
 <template>
-  <div class="steps">
+  <form class="steps">
     <StepsSection
       class="steps__personal-information"
       :index="1"
       :title="$t('pages.checkout.personalInformation.title')"
     >
       <div class="steps__form-section steps__form-section--personal-information">
-        <!-- Personal Information Form -->
+        <template v-for="(item, index) in personalInformationForm">
+          <StepsFormWrapper
+            :key="index"
+            v-bind="item.wrapper"
+          >
+            <component
+              :is="item.component"
+              v-bind="item.props"
+              v-on="item.listeners"
+            />
+          </StepsFormWrapper>
+        </template>
       </div>
     </StepsSection>
     <StepsSection
@@ -18,29 +29,45 @@
         <img aria-hidden="true" class="steps__payment-details-icon" :src="padlock" />
       </template>
       <div class="steps__form-section steps__form-section--personal-information">
-        <!-- Payment Details Form -->
+        <template v-for="(item, index) in paymentDetailsForm">
+          <StepsFormWrapper
+            :key="index"
+            v-bind="item.wrapper"
+          >
+            <component
+              :is="item.component"
+              v-bind="item.props"
+              v-on="item.listeners"
+            >
+              <template v-slot:additional-info v-if="item.infoComponent">
+                <component
+                  :is="item.infoComponent"
+                  v-bind="item.infoComponentProps"
+                />
+              </template>
+            </component>
+          </StepsFormWrapper>
+        </template>
       </div>
     </StepsSection>
     <!-- Button -->
-  </div>
+  </form>
 </template>
 
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email, integer } from 'vuelidate/lib/validators'
 import padlock from '../../../assets/images/padlock.svg'
+import StepsFormWrapper from './StepsFormWrapper.vue'
 import StepsSection from './StepsSection.vue'
+import BaseInput from '../../common/BaseInput.vue'
 
 export default {
   name: "Steps",
   mixins: [validationMixin],
   components: {
     StepsSection,
-  },
-  computed: {
-    padlock() {
-      return padlock
-    }
+    StepsFormWrapper,
   },
   data() {
     return {
@@ -53,28 +80,163 @@ export default {
         phone: '',
       },
       payment: {
-        cc: '0000000000000000',
-        ccv: '000',
-        expirationDate: '0000',
+        cc: '',
+        cvv: '',
+        expirationDate: '',
       }
     }
   },
+  computed: {
+    padlock() {
+      return padlock
+    },
+    personalInformationForm() {
+      return [
+        this.createPersonalInformationFormItem({
+          component: BaseInput,
+          type: 'text',
+          valueProp: 'firstName',
+        }),
+        this.createPersonalInformationFormItem({
+          component: BaseInput,
+          type: 'text',
+          valueProp: 'lastName',
+        }),
+        this.createPersonalInformationFormItem({
+          component: BaseInput,
+          type: 'email',
+          valueProp: 'email',
+          mask: 'ZZZ*',
+          isTwoColumns: true
+        }),
+        /**
+         * Country Selector
+         */
+        this.createPersonalInformationFormItem({
+          component: BaseInput,
+          type: 'text',
+          valueProp: 'postalCode',
+          mask: '#####'
+        }),
+        this.createPersonalInformationFormItem({
+          component: BaseInput,
+          type: 'tel',
+          valueProp: 'phone',
+          mask: '(###) ###-##-##'
+        }),
+      ]
+    },
+    paymentDetailsForm() {
+      return [
+        this.createPaymentDetailsFormItem({
+          component: BaseInput,
+          type: 'text',
+          valueProp: 'cc',
+          mask: '####-####-####-####',
+          isTwoColumns: true
+          // additionalInfo
+          // additionalInfoProps
+        }),
+        this.createPaymentDetailsFormItem({
+          component: BaseInput,
+          type: 'password',
+          valueProp: 'cvv',
+          mask: '###',
+          // additionalInfo
+        }),
+        this.createPaymentDetailsFormItem({
+          component: BaseInput,
+          type: 'text',
+          valueProp: 'expirationDate',
+          mask: '##/##'
+        }),
+      ]
+    }
+  },
+  methods: {
+    createPersonalInformationFormItem({ component, type, valueProp, mask = 'X*', isTwoColumns = false }) {
+      const _that = this;
+      return {
+          wrapper: {
+            label: this.$t(`pages.checkout.personalInformation.${valueProp}`),
+            inputName: valueProp,
+            isError: this.$v.user[valueProp].$dirty && this.$v.user[valueProp].$invalid,
+            class: [
+              'steps__form-control',
+              isTwoColumns ? 'steps__form-control--two-columns' : ''
+            ],
+          },
+          component,
+          props: {
+            type: type,
+            value: this.user[valueProp],
+            id: valueProp,
+            name: valueProp,
+            required: this.$v.user[valueProp].required,
+            mask,
+            placeholder: this.$t(`pages.checkout.personalInformation.${valueProp}Placeholder`),
+          },
+          listeners: {
+            input(v) {
+              if (v) {
+                _that.user[valueProp] = v;
+              }
+            },
+          }
+        }
+    },
+    createPaymentDetailsFormItem({ component, type, valueProp, infoComponent, infoComponentProps, mask = 'X*', isTwoColumns = false }) {
+      const _that = this;
+      return {
+          wrapper: {
+            label: this.$t(`pages.checkout.paymentDetails.${valueProp}`),
+            inputName: valueProp,
+            isError: this.$v.payment[valueProp].$dirty && this.$v.payment[valueProp].$invalid,
+            class: [
+              'steps__form-control',
+              isTwoColumns ? 'steps__form-control--two-columns' : ''
+            ],
+          },
+          component,
+          props: {
+            type: type,
+            value: this.payment[valueProp],
+            id: valueProp,
+            name: valueProp,
+            required: this.$v.payment[valueProp].required,
+            mask,
+            placeholder: this.$t(`pages.checkout.paymentDetails.${valueProp}Placeholder`),
+          },
+          listeners: {
+            input(v) {
+              if (v) {
+                _that.payment[valueProp] = v;
+              }
+            },
+          },
+          infoComponent,
+          infoComponentProps,
+        }
+    },
+  },
   validations() {
+    const zipValidators = {
+      'US': v => (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(v),
+    };
     const isLength = len => v => v.length === len
-    const isValidUSZip = v => v.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/);
-    const isUS = v => v === 'US'
+    const isValidCountry = v => ['US'].includes(v)
     return {
       user: {
         firstName: { required },
-        lastName:  { required },
+        lastName: { required },
         email: { required, email },
-        country:  { required, isUS },
-        postalCode:  { required, isValidUSZip },
+        country: { required, isValidCountry },
+        postalCode: { required, zip: zipValidators[this.user.country] },
         phone: { required, integer },
       },
       payment: {
         cc: { required, integer, len: isLength(16) },
-        ccv: { required, integer, len: isLength(3) },
+        cvv: { required, integer, len: isLength(3) },
         expirationDate: { required, integer, len: isLength(4) },
       }
     }
@@ -98,5 +260,13 @@ export default {
 .steps__payment-details-icon {
   width: 12px;
   height: 12px;
+}
+
+.steps__form-control {
+
+}
+
+.steps__form-control--two-columns {
+  grid-column: 1 / span 2;
 }
 </style>
