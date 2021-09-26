@@ -26,17 +26,57 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, email, integer } from 'vuelidate/lib/validators'
 import padlock from '../../../assets/images/padlock.svg'
 import StepsSection from './StepsSection.vue'
 
 export default {
   name: "Steps",
+  mixins: [validationMixin],
   components: {
     StepsSection,
   },
   computed: {
     padlock() {
       return padlock
+    }
+  },
+  data() {
+    return {
+      user: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        country: 'US',
+        postalCode: '',
+        phone: '',
+      },
+      payment: {
+        cc: '0000000000000000',
+        ccv: '000',
+        expirationDate: '0000',
+      }
+    }
+  },
+  validations() {
+    const isLength = len => v => v.length === len
+    const isValidUSZip = v => v.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/);
+    const isUS = v => v === 'US'
+    return {
+      user: {
+        firstName: { required },
+        lastName:  { required },
+        email: { required, email },
+        country:  { required, isUS },
+        postalCode:  { required, isValidUSZip },
+        phone: { required, integer },
+      },
+      payment: {
+        cc: { required, integer, len: isLength(16) },
+        ccv: { required, integer, len: isLength(3) },
+        expirationDate: { required, integer, len: isLength(4) },
+      }
     }
   }
 }
