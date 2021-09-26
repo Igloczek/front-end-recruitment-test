@@ -11,6 +11,14 @@ body {
   --checkout-border-radius: 4px;
   --checkout-box-shadow: 0 2px 0 #dcdcdc;
 
+  --checkout-steps-header-color: black;
+  --checkout-steps-header-index-background-color: black;
+  --checkout-steps-header-index-color: white;
+  --checkout-steps-header-icon-color: #484848;
+
+  --checkout-steps-header-index-size: 24px;
+  --checkout-steps-header-gap-size: 10px;
+
   --checkout-summary-header-color: black;
   --checkout-summary-background-color: #fff;
   --checkout-summary-inner-border: 1px dashed #dcdcdc;

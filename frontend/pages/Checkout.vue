@@ -1,8 +1,6 @@
 <template>
   <BaseArticle class="pages-checkout">
-    <section class="pages-checkout__checkout-steps">
-      Steps
-    </section>
+    <Steps class="pages-checkout__checkout-steps" />
     <Summary
       class="pages-checkout__summary"
       :cart="cart"
@@ -11,6 +9,7 @@
 </template>
 
 <script>
+import Steps from '../components/checkout/Steps/Steps.vue'
 import Summary from '../components/checkout/Summary/Summary.vue'
 
 export default {
@@ -21,6 +20,7 @@ export default {
     }
   },
   components: {
+    Steps,
     Summary,
   },
   computed: {

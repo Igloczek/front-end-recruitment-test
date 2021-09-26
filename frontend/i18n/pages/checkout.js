@@ -6,4 +6,10 @@ export default {
     totalPurchases: 'Total purchases',
     grandTotal: 'Total',
   },
+  personalInformation: {
+    title: 'Personal information',
+  },
+  paymentDetails: {
+    title: 'Payment details',
+  },
 }
