@@ -35,4 +35,8 @@ export default {
   countryOptions: {
     US: 'United States',
   },
+  completePurchase: {
+    success: 'Shopping done! Redirecting to the Homepage!',
+    fail: 'Shopping gone wrong... Please correct data and try again!',
+  },
 }

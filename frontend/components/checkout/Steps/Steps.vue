@@ -56,7 +56,9 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email, integer } from 'vuelidate/lib/validators'
+import axios from 'axios'
 import padlock from '../../../assets/images/padlock.svg'
+import routeNames from '../../../router/names'
 import StepsFormWrapper from './StepsFormWrapper.vue'
 import StepsSection from './StepsSection.vue'
 import StepsButtonSubmit from './StepsButtonSubmit.vue'
@@ -270,8 +272,28 @@ export default {
         return false;
       }
 
-      // Send data
+      axios.post('/order', {
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        email: this.user.email,
+        country: this.user.country,
+        postalCode: this.user.postalCode,
+        phone: this.user.phone,
+        creditCard: this.payment.cc,
+        CVV: this.payment.cvv,
+        expDate: this.insert(this.payment.expirationDate, 2, '/'),
+      }).then(() => {
+        alert(this.$t('pages.checkout.completePurchase.success'));
+        this.$router.replace({
+          name: routeNames.PAGE_HOME,
+        })
+      }).catch(() => {
+        alert(this.$t('pages.checkout.completePurchase.fail'));
+      })
     },
+    insert(str, index, value) {
+      return str.substr(0, index) + value + str.substr(index);
+    }
   },
   validations() {
     const zipValidators = {
