@@ -60,7 +60,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email, integer } from 'vuelidate/lib/validators'
-import axios from 'axios'
+import ordersService from '../../../services/orders.js'
 import padlock from '../../../assets/images/padlock.svg'
 import routeNames from '../../../router/names'
 import StepsFormWrapper from './StepsFormWrapper.vue'
@@ -276,7 +276,7 @@ export default {
         return false;
       }
 
-      axios.post('/order', {
+      ordersService.setOrder({
         firstName: this.user.firstName,
         lastName: this.user.lastName,
         email: this.user.email,
