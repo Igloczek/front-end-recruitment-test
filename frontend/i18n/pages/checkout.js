@@ -28,4 +28,5 @@ export default {
     expirationDate: 'Expiration date',
     expirationDatePlaceholder: 'MM/YY',
   },
+  submitButtonLabel: 'Complete purchase',
 }

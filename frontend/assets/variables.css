@@ -27,4 +27,9 @@ body {
   --checkout-form-label-color: #484848;
   --checkout-form-label-font-size: 12px;
   --checkout-form-font-size: 16px;
+
+  --checkout-form-submit-background-color: #6bd400;
+  --checkout-form-submit-color: white;
+  --checkout-form-submit-box-shadow: 0 2px 0 #5db603;
+  --checkout-form-submit-box-shadow-clicked: 0 0 0 #5db603;
 }
