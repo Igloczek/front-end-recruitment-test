@@ -15,13 +15,11 @@
 </template>
 
 <script>
-import cartIcon from '../../../assets/images/cart.svg'
-
 export default {
   name: 'StepsButtonSubmit',
   computed: {
     cartIcon() {
-      return cartIcon;
+      return require('../../../assets/images/cart.svg');
     },
   },
 }

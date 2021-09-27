@@ -9,9 +9,6 @@
 </template>
 
 <script>
-import ccUnknown from '../../../assets/images/cc_unknown.svg'
-import ccVisa from '../../../assets/images/cc_visa.svg'
-
 const ccTypes = {
   UKNOWN: 'UNKNOWN',
   VISA: 'VISA'
@@ -33,8 +30,8 @@ export default {
     },
     ccIcon() {
       const ccIcons = {
-        [ccTypes.UKNOWN]: ccUnknown,
-        [ccTypes.VISA]: ccVisa,
+        [ccTypes.UKNOWN]: require('../../../assets/images/cc_unknown.svg'),
+        [ccTypes.VISA]: require('../../../assets/images/cc_visa.svg'),
       }
       return ccIcons[this.ccType];
     }

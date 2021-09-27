@@ -61,7 +61,6 @@
 import { validationMixin } from 'vuelidate'
 import { required, email, integer } from 'vuelidate/lib/validators'
 import ordersService from '../../../services/orders.js'
-import padlock from '../../../assets/images/padlock.svg'
 import routeNames from '../../../router/names'
 import StepsFormWrapper from './StepsFormWrapper.vue'
 import StepsSection from './StepsSection.vue'
@@ -93,12 +92,24 @@ export default {
         cc: '',
         cvv: '',
         expirationDate: '',
+      },
+
+      order: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        country: 'US',
+        postalCode: '',
+        phone: '',
+        creditCard: '',
+        CVV: '',
+        expDate: '',
       }
     }
   },
   computed: {
     padlock() {
-      return padlock
+      return require('../../../assets/images/padlock.svg');
     },
     personalInformationForm() {
       return [
