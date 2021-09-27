@@ -61,6 +61,7 @@ import StepsFormWrapper from './StepsFormWrapper.vue'
 import StepsSection from './StepsSection.vue'
 import StepsButtonSubmit from './StepsButtonSubmit.vue'
 import StepsCVVTooltip from './StepsCVVTooltip.vue'
+import StepsCCIcon from './StepsCCIcon.vue'
 import BaseInput from '../../common/BaseInput.vue'
 
 export default {
@@ -71,6 +72,7 @@ export default {
     StepsFormWrapper,
     StepsButtonSubmit,
     StepsCVVTooltip,
+    StepsCCIcon,
   },
   data() {
     return {
@@ -137,9 +139,12 @@ export default {
           type: 'text',
           valueProp: 'cc',
           mask: '####-####-####-####',
-          isTwoColumns: true
-          // additionalInfo
-          // additionalInfoProps
+          isTwoColumns: true,
+          infoComponent: StepsCCIcon,
+          infoComponentProps: {
+            cc: this.payment.cc,
+            class: 'steps__form-additional-info'
+          }
         }),
         this.createPaymentDetailsFormItem({
           component: BaseInput,
