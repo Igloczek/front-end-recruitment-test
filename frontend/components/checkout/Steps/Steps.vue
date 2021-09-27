@@ -35,7 +35,7 @@
         <img
           aria-hidden="true"
           class="steps__payment-details-icon"
-          :src="padlock"
+          :src="padlockIcon"
         >
       </template>
       <div class="steps__form-section steps__form-section--personal-information">
@@ -67,7 +67,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, email, integer } from 'vuelidate/lib/validators'
 import ordersService from '../../../services/orders.js'
-import routeNames from '../../../router/names'
+import routeNames from '../../../router/names.js'
 import StepsFormWrapper from './StepsFormWrapper.vue'
 import StepsSection from './StepsSection.vue'
 import StepsButtonSubmit from './StepsButtonSubmit.vue'
@@ -96,7 +96,7 @@ export default {
     }
   },
   computed: {
-    padlock() {
+    padlockIcon() {
       return require('../../../assets/images/padlock.svg');
     },
     personalInformationForm() {
