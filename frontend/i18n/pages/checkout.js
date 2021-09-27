@@ -25,6 +25,7 @@ export default {
     ccPlaceholder: '0000-0000-0000-0000',
     cvv: 'Security code',
     cvvPlaceholder: '***',
+    ccvTooltip: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia augue id elementum interdum.',
     expirationDate: 'Expiration date',
     expirationDatePlaceholder: 'MM/YY',
   },

@@ -38,14 +38,13 @@
               :is="item.component"
               v-bind="item.props"
               v-on="item.listeners"
-            >
-              <template v-slot:additional-info v-if="item.infoComponent">
-                <component
-                  :is="item.infoComponent"
-                  v-bind="item.infoComponentProps"
-                />
-              </template>
-            </component>
+            />
+            <template v-slot:additional-info>
+              <component
+                :is="item.infoComponent"
+                 v-bind="item.infoComponentProps"
+              />
+            </template>
           </StepsFormWrapper>
         </template>
       </div>
@@ -61,6 +60,7 @@ import padlock from '../../../assets/images/padlock.svg'
 import StepsFormWrapper from './StepsFormWrapper.vue'
 import StepsSection from './StepsSection.vue'
 import StepsButtonSubmit from './StepsButtonSubmit.vue'
+import StepsCVVTooltip from './StepsCVVTooltip.vue'
 import BaseInput from '../../common/BaseInput.vue'
 
 export default {
@@ -70,6 +70,7 @@ export default {
     StepsSection,
     StepsFormWrapper,
     StepsButtonSubmit,
+    StepsCVVTooltip,
   },
   data() {
     return {
@@ -145,7 +146,10 @@ export default {
           type: 'password',
           valueProp: 'cvv',
           mask: '###',
-          // additionalInfo
+          infoComponent: StepsCVVTooltip,
+          infoComponentProps: {
+            class: 'steps__form-additional-info'
+          }
         }),
         this.createPaymentDetailsFormItem({
           component: BaseInput,
@@ -280,5 +284,12 @@ export default {
 
 .steps__form-control--two-columns {
   grid-column: 1 / span 2;
+}
+
+.steps__form-additional-info {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
 }
 </style>

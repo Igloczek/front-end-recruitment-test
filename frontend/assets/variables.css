@@ -32,4 +32,6 @@ body {
   --checkout-form-submit-color: white;
   --checkout-form-submit-box-shadow: 0 2px 0 #5db603;
   --checkout-form-submit-box-shadow-clicked: 0 0 0 #5db603;
+
+  --checkout-form-ccv-tooltip-color: #aaa;
 }
