@@ -50,7 +50,7 @@
         </template>
       </div>
     </StepsSection>
-    <!-- Button -->
+    <StepsButtonSubmit @submit="submitCallback" />
   </form>
 </template>
 
@@ -60,6 +60,7 @@ import { required, email, integer } from 'vuelidate/lib/validators'
 import padlock from '../../../assets/images/padlock.svg'
 import StepsFormWrapper from './StepsFormWrapper.vue'
 import StepsSection from './StepsSection.vue'
+import StepsButtonSubmit from './StepsButtonSubmit.vue'
 import BaseInput from '../../common/BaseInput.vue'
 
 export default {
@@ -68,6 +69,7 @@ export default {
   components: {
     StepsSection,
     StepsFormWrapper,
+    StepsButtonSubmit,
   },
   data() {
     return {
@@ -217,6 +219,15 @@ export default {
           infoComponent,
           infoComponentProps,
         }
+    },
+    submitCallback() {
+      this.$v.$touch();
+
+      if (this.$v.$invalid) {
+        return false;
+      }
+
+      // Send data
     },
   },
   validations() {
