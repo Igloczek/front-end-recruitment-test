@@ -2,7 +2,8 @@
   <input
     v-model="value"
     v-maska="computedMask"
-    class="steps-input-text"
+    class="base-input"
+    data-test="base-input"
     @maska="inputCallback"
   >
 </template>
@@ -18,7 +19,7 @@ export default {
   props: {
     mask: {
       type: String,
-      default: '*',
+      default: 'Z*',
     },
   },
   data() {
@@ -41,7 +42,7 @@ export default {
 </script>
 
 <style>
-.steps-input-text {
+.base-input {
   appearance: none;
   width: 100%;
   font-family: var(--checkout-font-family);
