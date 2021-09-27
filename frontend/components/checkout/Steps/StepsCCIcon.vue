@@ -21,7 +21,7 @@ export default {
   name: "StepsCCIcon",
   props: {
     cc: {
-      type: Number,
+      type: String,
       required: true,
     }
   },
