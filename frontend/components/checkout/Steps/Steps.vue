@@ -282,6 +282,12 @@ export default {
   grid-template: repeat(auto-fit, minmax(0, max-content)) / 1fr;
 }
 
+@media screen and (min-width: 768px) {
+  .steps {
+    padding-left: calc(var(--checkout-steps-header-index-size) + var(--checkout-steps-header-gap-size));
+  }
+}
+
 .steps__form-section {
   display: grid;
   gap: 12px 18px;

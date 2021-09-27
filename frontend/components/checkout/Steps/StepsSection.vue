@@ -44,6 +44,13 @@ export default {
   grid-template: 1fr / min-content minmax(0, max-content) min-content;
   align-items: center; 
   margin: 0 0 20px 0;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .steps-section__header {
+    left: calc(-1 * (var(--checkout-steps-header-index-size) + var(--checkout-steps-header-gap-size)));
+  }
 }
 
 .steps-section__index {
@@ -63,9 +70,5 @@ export default {
   text-transform: uppercase;
   font-size: 14px;
   color: var(--checkout-steps-header-color);
-}
-
-.steps-section__wrapper {
-  padding-left: calc(var(--checkout-steps-header-index-size) + var(--checkout-steps-header-gap-size))
 }
 </style>

@@ -47,8 +47,8 @@ export default {
   display: grid;
   gap: 38px 12px;
   grid-template: 
-    "summary" 1fr
-    "checkout-steps" 1fr
+    "summary" auto
+    "checkout-steps" auto
       / 1fr;
   font-family: var(--checkout-font-family);
   max-width: 960px;
@@ -59,7 +59,7 @@ export default {
 
 @media screen and (min-width: 768px) {
   .pages-checkout {
-    grid-template: "checkout-steps summary" 1fr / 2fr 1fr;
+    grid-template: "checkout-steps summary" 1fr / 2fr minmax(240px, 1fr);
   }
 }
 

@@ -35,7 +35,6 @@ export default {
   color: var(--checkout-form-submit-color);
   box-shadow: var(--checkout-form-submit-box-shadow);
   border-radius: var(--checkout-border-radius);
-  margin-left: calc(var(--checkout-steps-header-index-size) + var(--checkout-steps-header-gap-size));
   border: 0;
   padding: 16px;
   cursor: pointer;
