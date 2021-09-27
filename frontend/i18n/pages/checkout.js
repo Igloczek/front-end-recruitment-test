@@ -14,6 +14,8 @@ export default {
     lastNamePlaceholder: 'Musk',
     email: 'Email',
     emailPlaceholder: 'elon@spacex.com',
+    country: 'Contry',
+    countryPlaceholder: '',
     postalCode: 'Postal code',
     postalCodePlaceholder: '10001',
     phone: 'Phone number',
@@ -30,4 +32,7 @@ export default {
     expirationDatePlaceholder: 'MM/YY',
   },
   submitButtonLabel: 'Complete purchase',
+  countryOptions: {
+    US: 'United States',
+  },
 }

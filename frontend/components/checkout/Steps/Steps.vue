@@ -63,6 +63,7 @@ import StepsButtonSubmit from './StepsButtonSubmit.vue'
 import StepsCVVTooltip from './StepsCVVTooltip.vue'
 import StepsCCIcon from './StepsCCIcon.vue'
 import BaseInput from '../../common/BaseInput.vue'
+import BaseSelect from '../../common/BaseSelect.vue'
 
 export default {
   name: "Steps",
@@ -71,8 +72,6 @@ export default {
     StepsSection,
     StepsFormWrapper,
     StepsButtonSubmit,
-    StepsCVVTooltip,
-    StepsCCIcon,
   },
   data() {
     return {
@@ -114,9 +113,13 @@ export default {
           mask: 'ZZZ*',
           isTwoColumns: true
         }),
-        /**
-         * Country Selector
-         */
+        this.createPersonalInformationFormItemSelect({
+          component: BaseSelect,
+          valueProp: 'country',
+          options: [
+            ['US', this.$t('pages.checkout.countryOptions.US')]
+          ],
+        }),
         this.createPersonalInformationFormItem({
           component: BaseInput,
           type: 'text',
@@ -166,6 +169,36 @@ export default {
     }
   },
   methods: {
+    createPersonalInformationFormItemSelect({ component, valueProp, options, isTwoColumns = false }) {
+      const _that = this;
+      return {
+          wrapper: {
+            label: this.$t(`pages.checkout.personalInformation.${valueProp}`),
+            inputName: valueProp,
+            isError: this.$v.user[valueProp].$dirty && this.$v.user[valueProp].$invalid,
+            class: [
+              'steps__form-control',
+              isTwoColumns ? 'steps__form-control--two-columns' : ''
+            ],
+          },
+          component,
+          props: {
+            value: this.user[valueProp],
+            id: valueProp,
+            name: valueProp,
+            required: this.$v.user[valueProp].required,
+            options,
+          },
+          listeners: {
+            change(v) {
+              if (v) {
+                console.log('change', v, _that.user[valueProp]);
+                _that.user[valueProp] = v;
+              }
+            },
+          }
+        }
+    },
     createPersonalInformationFormItem({ component, type, valueProp, mask = 'X*', isTwoColumns = false }) {
       const _that = this;
       return {
