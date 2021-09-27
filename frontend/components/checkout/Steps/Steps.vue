@@ -124,7 +124,8 @@ export default {
           component: BaseInput,
           type: 'tel',
           valueProp: 'phone',
-          mask: '(###) ###-##-##'
+          mask: '(###) ###-##-##',
+          isTwoColumns: true
         }),
       ]
     },
