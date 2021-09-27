@@ -3,13 +3,16 @@
     class="bacon-image"
     data-test="bacon-image"
   >
-    <img src="/images/bacon.jpg" :alt="$t('pages.bacon.baconImageAlt')" />
+    <img
+      src="/images/bacon.jpg"
+      :alt="$t('pages.bacon.baconImageAlt')"
+    >
   </picture>
 </template>
 
 <script>
 export default {
-  name: 'baconImage',
+  name: 'BaconImage',
 }
 </script>
 

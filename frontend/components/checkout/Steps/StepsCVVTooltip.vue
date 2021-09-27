@@ -1,7 +1,7 @@
 <template>
-  <div class='steps-cvv-tooltip'>
+  <div class="steps-cvv-tooltip">
     ?
-    <div class='steps-cvv-tooltip__flyout'>
+    <div class="steps-cvv-tooltip__flyout">
       {{ $t('pages.checkout.paymentDetails.ccvTooltip') }}
     </div>
   </div>

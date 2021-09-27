@@ -1,7 +1,7 @@
 <template>
   <select
-    class='base-select'
-    data-test='base-select'
+    class="base-select"
+    data-test="base-select"
     @change="onChange"
   >
     <template v-for="[ value, label ] in options">

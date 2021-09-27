@@ -5,7 +5,11 @@
     type="submit"
     @click.prevent="$emit('submit')"
   >
-    <img aria-hidden="true" class="steps-button-submit__icon" :src="cartIcon" />
+    <img
+      aria-hidden="true"
+      class="steps-button-submit__icon"
+      :src="cartIcon"
+    >
     {{ $t('pages.checkout.submitButtonLabel') }}
   </button>
 </template>

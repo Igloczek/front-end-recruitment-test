@@ -13,7 +13,7 @@ import Steps from '../components/checkout/Steps/Steps.vue'
 import Summary from '../components/checkout/Summary/Summary.vue'
 
 export default {
-  name: 'pagesCheckout',
+  name: 'PagesCheckout',
   metaInfo() {
     return {
       title: this.$t('pages.checkout.title')

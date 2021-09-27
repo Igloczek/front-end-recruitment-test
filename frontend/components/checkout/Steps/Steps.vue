@@ -25,8 +25,12 @@
       :index="2"
       :title="$t('pages.checkout.paymentDetails.title')"
     >
-      <template v-slot:header-icon>
-        <img aria-hidden="true" class="steps__payment-details-icon" :src="padlock" />
+      <template #header-icon>
+        <img
+          aria-hidden="true"
+          class="steps__payment-details-icon"
+          :src="padlock"
+        >
       </template>
       <div class="steps__form-section steps__form-section--personal-information">
         <template v-for="(item, index) in paymentDetailsForm">
@@ -39,10 +43,10 @@
               v-bind="item.props"
               v-on="item.listeners"
             />
-            <template v-slot:additional-info>
+            <template #additional-info>
               <component
                 :is="item.infoComponent"
-                 v-bind="item.infoComponentProps"
+                v-bind="item.infoComponentProps"
               />
             </template>
           </StepsFormWrapper>
@@ -69,12 +73,12 @@ import BaseSelect from '../../common/BaseSelect.vue'
 
 export default {
   name: "Steps",
-  mixins: [validationMixin],
   components: {
     StepsSection,
     StepsFormWrapper,
     StepsButtonSubmit,
   },
+  mixins: [validationMixin],
   data() {
     return {
       user: {

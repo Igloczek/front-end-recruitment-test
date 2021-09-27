@@ -1,10 +1,10 @@
 <template>
   <input
-    class="steps-input-text"
-    v-maska="computedMask"
     v-model="value"
+    v-maska="computedMask"
+    class="steps-input-text"
     @maska="inputCallback"
-  />
+  >
 </template>
 
 <script>

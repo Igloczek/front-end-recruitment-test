@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'pagesIndex',
+  name: 'PagesIndex',
   metaInfo() {
     return {
       title: this.$t('pages.index.title')

@@ -1,10 +1,10 @@
 <template>
-  <div class='steps-cc-icon'>
+  <div class="steps-cc-icon">
     <img
       aria-hidden="true"
       class="steps-cc-icon__icon"
       :src="ccIcon"
-    />
+    >
   </div>
 </template>
 

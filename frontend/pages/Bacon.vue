@@ -23,7 +23,7 @@ const APPEND_BACON_FUNC_NAME = 'appendBacon'
 const SHOW_EXCEPTION_AND_CLOSE = 'showExceptionAndClose'
 
 export default {
-  name: 'pagesBacon',
+  name: 'PagesBacon',
   metaInfo() {
     return {
       title: this.$t('pages.bacon.title')
@@ -32,6 +32,13 @@ export default {
   components: {
     BaconImage,
     BaconButton,
+  },
+  data() {
+    return {
+      bacons: [
+        { left: '50%', top: '50%' },
+      ],
+    };
   },
   computed: {
     animationTimeline() {
@@ -44,13 +51,6 @@ export default {
         4000: SHOW_EXCEPTION_AND_CLOSE
       }
     }
-  },
-  data() {
-    return {
-      bacons: [
-        { left: '50%', top: '50%' },
-      ],
-    };
   },
   methods: {
     clickMoreBacon() {

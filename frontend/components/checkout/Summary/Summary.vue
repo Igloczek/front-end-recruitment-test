@@ -6,17 +6,17 @@
           :type="4"
           :text="$t('pages.checkout.summary.header')"
         />
-        <template v-for="(items, index) in items">
+        <template v-for="(item, index) in items">
           <SummaryText
             :key="index"
-            :name="items.name"
-            :value="items.price"
+            :name="item.name"
+            :value="item.price"
           />
         </template>
       </SummarySection>
       <SummarySection :featured="true">
         <SummaryText
-          :decimalNumbers="2"
+          :decimal-numbers="2"
           :name="$t('pages.checkout.summary.totalPurchases')"
           :value="subTotal"
         />

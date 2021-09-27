@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'baseArticle'
+  name: 'BaseArticle'
 }
 </script>
