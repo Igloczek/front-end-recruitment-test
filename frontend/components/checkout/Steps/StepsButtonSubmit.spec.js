@@ -1,8 +1,6 @@
 import { mount } from '@vue/test-utils'
 import StepsButtonSubmit from './StepsButtonSubmit.vue'
 
-jest.mock('../../../assets/images/cart.svg')
-
 const wrapperOptions = {
   mocks: {
     $t () {
