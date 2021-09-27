@@ -2,7 +2,7 @@
   <div class="steps-cvv-tooltip">
     ?
     <div class="steps-cvv-tooltip__flyout">
-      {{ $t('pages.checkout.paymentDetails.ccvTooltip') }}
+      {{ $t('pages.checkout.orderForm.CVVTooltip') }}
     </div>
   </div>
 </template>
@@ -15,7 +15,6 @@ export default {
 
 <style scoped>
 .steps-cvv-tooltip {
-  position: relative;
   border-radius: 50%;
   border: 1px solid var(--checkout-form-ccv-tooltip-color);
   color: var(--checkout-form-ccv-tooltip-color);

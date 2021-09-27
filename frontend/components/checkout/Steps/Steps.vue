@@ -16,6 +16,12 @@
               v-bind="item.props"
               v-on="item.listeners"
             />
+            <template #additional-info>
+              <component
+                :is="item.infoComponent"
+                v-bind="item.infoComponentProps"
+              />
+            </template>
           </StepsFormWrapper>
         </template>
       </div>
@@ -65,10 +71,6 @@ import routeNames from '../../../router/names'
 import StepsFormWrapper from './StepsFormWrapper.vue'
 import StepsSection from './StepsSection.vue'
 import StepsButtonSubmit from './StepsButtonSubmit.vue'
-import StepsCVVTooltip from './StepsCVVTooltip.vue'
-import StepsCCIcon from './StepsCCIcon.vue'
-import BaseInput from '../../common/BaseInput.vue'
-import BaseSelect from '../../common/BaseSelect.vue'
 
 export default {
   name: "Steps",
@@ -80,20 +82,6 @@ export default {
   mixins: [validationMixin],
   data() {
     return {
-      user: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        country: 'US',
-        postalCode: '',
-        phone: '',
-      },
-      payment: {
-        cc: '',
-        cvv: '',
-        expirationDate: '',
-      },
-
       order: {
         firstName: '',
         lastName: '',
@@ -113,38 +101,32 @@ export default {
     },
     personalInformationForm() {
       return [
-        this.createPersonalInformationFormItem({
-          component: BaseInput,
+        this.createFormInput({
           type: 'text',
           valueProp: 'firstName',
         }),
-        this.createPersonalInformationFormItem({
-          component: BaseInput,
+        this.createFormInput({
           type: 'text',
           valueProp: 'lastName',
         }),
-        this.createPersonalInformationFormItem({
-          component: BaseInput,
+        this.createFormInput({
           type: 'email',
           valueProp: 'email',
           mask: 'ZZZ*',
           isTwoColumns: true
         }),
-        this.createPersonalInformationFormItemSelect({
-          component: BaseSelect,
+        this.createFormSelect({
           valueProp: 'country',
           options: [
             ['US', this.$t('pages.checkout.countryOptions.US')]
           ],
         }),
-        this.createPersonalInformationFormItem({
-          component: BaseInput,
+        this.createFormInput({
           type: 'text',
           valueProp: 'postalCode',
           mask: '#####'
         }),
-        this.createPersonalInformationFormItem({
-          component: BaseInput,
+        this.createFormInput({
           type: 'tel',
           valueProp: 'phone',
           mask: '(###) ###-##-##',
@@ -154,131 +136,97 @@ export default {
     },
     paymentDetailsForm() {
       return [
-        this.createPaymentDetailsFormItem({
-          component: BaseInput,
+        this.createFormInput({
           type: 'text',
-          valueProp: 'cc',
+          valueProp: 'creditCard',
           mask: '####-####-####-####',
           isTwoColumns: true,
-          infoComponent: StepsCCIcon,
+          infoComponent: () => import(/* webpackChunkName: "pages-checkout" */ './StepsCCIcon.vue'),
           infoComponentProps: {
-            cc: this.payment.cc,
+            cc: this.order.creditCard,
             class: 'steps__form-additional-info'
           }
         }),
-        this.createPaymentDetailsFormItem({
-          component: BaseInput,
+        this.createFormInput({
           type: 'password',
-          valueProp: 'cvv',
+          valueProp: 'CVV',
           mask: '###',
-          infoComponent: StepsCVVTooltip,
+          infoComponent: () => import(/* webpackChunkName: "pages-checkout" */ './StepsCVVTooltip.vue'),
           infoComponentProps: {
             class: 'steps__form-additional-info'
           }
         }),
-        this.createPaymentDetailsFormItem({
-          component: BaseInput,
+        this.createFormInput({
           type: 'text',
-          valueProp: 'expirationDate',
+          valueProp: 'expDate',
           mask: '##/##'
         }),
       ]
     }
   },
   methods: {
-    createPersonalInformationFormItemSelect({ component, valueProp, options, isTwoColumns = false }) {
+    createFormSelect({ valueProp, options, isTwoColumns = false }) {
       const _that = this;
       return {
           wrapper: {
-            label: this.$t(`pages.checkout.personalInformation.${valueProp}`),
+            label: this.$t(`pages.checkout.orderForm.${valueProp}`),
             inputName: valueProp,
-            isError: this.$v.user[valueProp].$dirty && this.$v.user[valueProp].$invalid,
+            isError: this.$v.order[valueProp].$dirty && this.$v.order[valueProp].$invalid,
             class: [
               'steps__form-control',
               isTwoColumns ? 'steps__form-control--two-columns' : ''
             ],
           },
-          component,
+          component: 'base-select',
           props: {
-            value: this.user[valueProp],
+            value: this.order[valueProp],
             id: valueProp,
             name: valueProp,
-            required: this.$v.user[valueProp].required,
+            required: this.$v.order[valueProp].required,
             options,
           },
           listeners: {
             change(v) {
               if (v) {
-                console.log('change', v, _that.user[valueProp]);
-                _that.user[valueProp] = v;
+                console.log('change', v, _that.order[valueProp]);
+                _that.order[valueProp] = v;
               }
             },
           }
         }
     },
-    createPersonalInformationFormItem({ component, type, valueProp, mask = 'X*', isTwoColumns = false }) {
+    createFormInput({ type, valueProp, infoComponent, infoComponentProps, mask = 'X*', isTwoColumns = false }) {
       const _that = this;
       return {
-          wrapper: {
-            label: this.$t(`pages.checkout.personalInformation.${valueProp}`),
-            inputName: valueProp,
-            isError: this.$v.user[valueProp].$dirty && this.$v.user[valueProp].$invalid,
-            class: [
-              'steps__form-control',
-              isTwoColumns ? 'steps__form-control--two-columns' : ''
-            ],
+        wrapper: {
+          label: this.$t(`pages.checkout.orderForm.${valueProp}`),
+          inputName: valueProp,
+          isError: this.$v.order[valueProp].$dirty && this.$v.order[valueProp].$invalid,
+          class: [
+            'steps__form-control',
+            isTwoColumns ? 'steps__form-control--two-columns' : ''
+          ],
+        },
+        component: 'base-input',
+        props: {
+          type: type,
+          value: this.order[valueProp],
+          id: valueProp,
+          name: valueProp,
+          required: this.$v.order[valueProp].required,
+          mask,
+          placeholder: this.$t(`pages.checkout.orderForm.${valueProp}Placeholder`),
+        },
+        listeners: {
+          input(v) {
+            if (v) {
+              _that.order[valueProp] = v;
+            }
           },
-          component,
-          props: {
-            type: type,
-            value: this.user[valueProp],
-            id: valueProp,
-            name: valueProp,
-            required: this.$v.user[valueProp].required,
-            mask,
-            placeholder: this.$t(`pages.checkout.personalInformation.${valueProp}Placeholder`),
-          },
-          listeners: {
-            input(v) {
-              if (v) {
-                _that.user[valueProp] = v;
-              }
-            },
-          }
-        }
-    },
-    createPaymentDetailsFormItem({ component, type, valueProp, infoComponent, infoComponentProps, mask = 'X*', isTwoColumns = false }) {
-      const _that = this;
-      return {
-          wrapper: {
-            label: this.$t(`pages.checkout.paymentDetails.${valueProp}`),
-            inputName: valueProp,
-            isError: this.$v.payment[valueProp].$dirty && this.$v.payment[valueProp].$invalid,
-            class: [
-              'steps__form-control',
-              isTwoColumns ? 'steps__form-control--two-columns' : ''
-            ],
-          },
-          component,
-          props: {
-            type: type,
-            value: this.payment[valueProp],
-            id: valueProp,
-            name: valueProp,
-            required: this.$v.payment[valueProp].required,
-            mask,
-            placeholder: this.$t(`pages.checkout.paymentDetails.${valueProp}Placeholder`),
-          },
-          listeners: {
-            input(v) {
-              if (v) {
-                _that.payment[valueProp] = v;
-              }
-            },
-          },
-          infoComponent,
-          infoComponentProps,
-        }
+        },
+        infoComponent,
+        infoComponentProps,
+      }
     },
     submitCallback() {
       this.$v.$touch();
@@ -287,24 +235,18 @@ export default {
         return false;
       }
 
-      ordersService.setOrder({
-        firstName: this.user.firstName,
-        lastName: this.user.lastName,
-        email: this.user.email,
-        country: this.user.country,
-        postalCode: this.user.postalCode,
-        phone: this.user.phone,
-        creditCard: this.payment.cc,
-        CVV: this.payment.cvv,
-        expDate: this.insert(this.payment.expirationDate, 2, '/'),
-      }).then(() => {
-        alert(this.$t('pages.checkout.completePurchase.success'));
-        this.$router.replace({
-          name: routeNames.PAGE_HOME,
+      const expDate = this.insert(this.order.expDate, 2, '/');
+
+      ordersService.setOrder({ ...this.order, expDate })
+        .then(() => {
+          alert(this.$t('pages.checkout.completePurchase.success'));
+          this.$router.replace({
+            name: routeNames.PAGE_HOME,
+          })
         })
-      }).catch(() => {
-        alert(this.$t('pages.checkout.completePurchase.fail'));
-      })
+        .catch(() => {
+          alert(this.$t('pages.checkout.completePurchase.fail'));
+        })
     },
     insert(str, index, value) {
       return str.substr(0, index) + value + str.substr(index);
@@ -317,18 +259,16 @@ export default {
     const isLength = len => v => v.length === len
     const isValidCountry = v => ['US'].includes(v)
     return {
-      user: {
+      order: {
         firstName: { required },
         lastName: { required },
         email: { required, email },
         country: { required, isValidCountry },
-        postalCode: { required, zip: zipValidators[this.user.country] },
+        postalCode: { required, zip: zipValidators[this.order.country] },
         phone: { required, integer },
-      },
-      payment: {
-        cc: { required, integer, len: isLength(16) },
-        cvv: { required, integer, len: isLength(3) },
-        expirationDate: { required, integer, len: isLength(4) },
+        creditCard: { required, integer, len: isLength(16) },
+        CVV: { required, integer, len: isLength(3) },
+        expDate: { required, integer, len: isLength(4) },
       }
     }
   }
@@ -351,10 +291,6 @@ export default {
 .steps__payment-details-icon {
   width: 12px;
   height: 12px;
-}
-
-.steps__form-control {
-
 }
 
 .steps__form-control--two-columns {

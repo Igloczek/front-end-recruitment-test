@@ -8,6 +8,11 @@ export default {
   },
   personalInformation: {
     title: 'Personal information',
+  },
+  paymentDetails: {
+    title: 'Payment details',
+  },
+  orderForm: {
     firstName: 'First name',
     firstNamePlaceholder: 'Elon',
     lastName: 'Last name',
@@ -20,16 +25,13 @@ export default {
     postalCodePlaceholder: '10001',
     phone: 'Phone number',
     phonePlaceholder: '(212) 692-93-92',
-  },
-  paymentDetails: {
-    title: 'Payment details',
-    cc: 'Credit Card Number',
-    ccPlaceholder: '0000-0000-0000-0000',
-    cvv: 'Security code',
-    cvvPlaceholder: '***',
-    ccvTooltip: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia augue id elementum interdum.',
-    expirationDate: 'Expiration date',
-    expirationDatePlaceholder: 'MM/YY',
+    creditCard: 'Credit Card Number',
+    creditCardPlaceholder: '0000-0000-0000-0000',
+    CVV: 'Security code',
+    CVVPlaceholder: '***',
+    CVVTooltip: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia augue id elementum interdum.',
+    expDate: 'Expiration date',
+    expDatePlaceholder: 'MM/YY',
   },
   submitButtonLabel: 'Complete purchase',
   countryOptions: {
