@@ -2,12 +2,12 @@ import { mount } from '@vue/test-utils'
 import BaseParagraph from './BaseParagraph.vue'
 
 describe('BaseParagraph', () => {
-  test('is renderable', () => {
+  test('shall be renderable', () => {
     const wrapper = mount(BaseParagraph)
     expect(wrapper.find('[data-test="base-paragraph"]').isVisible()).toBeTruthy()
   })
 
-  test('has default slot', () => {
+  test('shall have default slot', () => {
     const slotText = 'This is slot test!'
     const wrapper = mount(BaseParagraph, {
       slots: {

@@ -7,7 +7,7 @@ const renderableProps = {
 }
 
 describe('StepsFormWrapper', () => {
-  test('is renderable', () => {
+  test('shall be renderable', () => {
     const wrapper = mount(StepsFormWrapper, {
       propsData: renderableProps,
     })
@@ -15,7 +15,7 @@ describe('StepsFormWrapper', () => {
   })
 
   describe('Slots', () => {
-    test('has default slot', () => {
+    test('shall have default slot', () => {
       const slotText = 'This is slot test!'
       const wrapper = mount(StepsFormWrapper, {
         propsData: renderableProps,
@@ -26,7 +26,7 @@ describe('StepsFormWrapper', () => {
       expect(wrapper.html()).toContain(slotText)
     })
 
-    test('has additional-info slot', () => {
+    test('shall have additional-info slot', () => {
       const slotText = 'This is additional-info test!'
       const wrapper = mount(StepsFormWrapper, {
         propsData: renderableProps,
@@ -39,7 +39,7 @@ describe('StepsFormWrapper', () => {
   })
 
   describe('Props', () => {
-    test('has label prop & renders it', () => {
+    test('shall have label prop & renders it', () => {
       const propTitle = 'This is label test!'
       const wrapper = mount(StepsFormWrapper, {
         propsData: {
@@ -50,7 +50,7 @@ describe('StepsFormWrapper', () => {
       expect(wrapper.html()).toContain(propTitle)
     })
 
-    test('has inputName prop & assign it to attrs', () => {
+    test('shall have inputName prop & assign it to attrs', () => {
       const propInputName = 'input-name'
       const wrapper = mount(StepsFormWrapper, {
         propsData: {
@@ -61,7 +61,7 @@ describe('StepsFormWrapper', () => {
       expect(wrapper.find(`[for="${propInputName}"]`).isVisible()).toBeTruthy()
     })
 
-    test('has wrapper one class', () => {
+    test('shall have wrapper one class', () => {
       const wrapper = mount(StepsFormWrapper, {
         propsData: renderableProps,
       })
@@ -70,7 +70,7 @@ describe('StepsFormWrapper', () => {
       expect(formWrapperClasses).toHaveLength(1)
     })
 
-    test('has isError prop influence over class names', () => {
+    test('shall have isError prop influence over class names', () => {
       const wrapper = mount(StepsFormWrapper, {
         propsData: {
           ...renderableProps,

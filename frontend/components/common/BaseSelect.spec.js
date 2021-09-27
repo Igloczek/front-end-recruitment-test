@@ -11,12 +11,12 @@ const defaultOptions = {
 }
 
 describe('BaseSelect', () => {
-  test('is renderable', () => {
+  test('shall be renderable', () => {
     const wrapper = mount(BaseSelect, defaultOptions)
     expect(wrapper.find('[data-test="base-select"]').isVisible()).toBeTruthy()
   })
 
-  test('can emit change', () => {
+  test('shall have emit change', () => {
     const wrapper = mount(BaseSelect, defaultOptions)
     const options = wrapper.find('[data-test="base-select"]').findAll('option')
     options.at(1).setSelected()

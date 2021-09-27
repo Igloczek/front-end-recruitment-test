@@ -10,12 +10,12 @@ const wrapperOptions = {
 }
 
 describe('BaconButton', () => {
-  test('is renderable', () => {
+  test('shell be renderable', () => {
     const wrapper = mount(BaconButton, wrapperOptions)
     expect(wrapper.find('[data-test="bacon-button"]').isVisible()).toBeTruthy()
   })
 
-  test('on click emits click', () => {
+  test('shall click emits click', () => {
     const wrapper = mount(BaconButton, wrapperOptions)
     const button = wrapper.find('[data-test="bacon-button"]')
     button.trigger('click')

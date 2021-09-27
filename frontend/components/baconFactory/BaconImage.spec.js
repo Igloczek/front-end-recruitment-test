@@ -10,7 +10,7 @@ const wrapperOptions = {
 }
 
 describe('BaconImage', () => {
-  test('is renderable', () => {
+  test('shall be renderable', () => {
     const wrapper = mount(BaconImage, wrapperOptions)
     expect(wrapper.find('[data-test="bacon-image"]').isVisible()).toBeTruthy()
   })

@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import SummaryText from './SummaryText.vue'
 
 describe('SummaryText', () => {
-  test('is renderable', () => {
+  test('shall be renderable', () => {
     const wrapper = mount(SummaryText, {
       propsData: {
         name: 'Name',
@@ -12,7 +12,7 @@ describe('SummaryText', () => {
     expect(wrapper.find('[data-test="summary-text"]').isVisible()).toBeTruthy()
   })
 
-  test('has name prop & renders it', () => {
+  test('shall have name prop & renders it', () => {
     const propText = 'This is prop name test!'
     const wrapper = mount(SummaryText, {
       propsData: {
@@ -23,7 +23,7 @@ describe('SummaryText', () => {
     expect(wrapper.html()).toContain(propText)
   })
 
-  test('has value prop & renders it', () => {
+  test('shall have value prop & renders it', () => {
     const propValue = 900
     const wrapper = mount(SummaryText, {
       propsData: {
@@ -34,7 +34,7 @@ describe('SummaryText', () => {
     expect(wrapper.html()).toContain(propValue.toString())
   })
 
-  test('has decimalNumber prop & use it', () => {
+  test('shall have decimalNumber prop & use it', () => {
     const propValue = 900
     const wrapper = mount(SummaryText, {
       propsData: {

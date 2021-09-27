@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import SummarySection from './SummarySection.vue'
 
 describe('SummarySection', () => {
-  test('is renderable', () => {
+  test('shall be renderable', () => {
     const wrapper = mount(SummarySection, {
       slots: {
         default: 'is renderable',
@@ -21,7 +21,18 @@ describe('SummarySection', () => {
     expect(wrapper.html()).toContain(slotText)
   })
 
-  test('has featured prop influence over class names', () => {
+  test('shall have wrapper one class', () => {
+    const wrapper = mount(SummarySection, {
+      slots: {
+        default: 'is renderable',
+      },
+    })
+    const summarySection = wrapper.find('[data-test="summary-section"]')
+    const summarySectionClasses = summarySection.classes()
+    expect(summarySectionClasses).toHaveLength(1)
+  })
+
+  test('shall have featured prop influence over class names', () => {
     const wrapper = mount(SummarySection, {
       propsData: {
         featured: true,

@@ -12,12 +12,12 @@ const wrapperOptions = {
 }
 
 describe('StepsButtonSubmit', () => {
-  test('is renderable', () => {
+  test('shall be renderable', () => {
     const wrapper = mount(StepsButtonSubmit, wrapperOptions)
     expect(wrapper.find('[data-test="steps-button-submit"]').isVisible()).toBeTruthy()
   })
 
-  test('click send submit', () => {
+  test('shall click emits submit', () => {
     const wrapper = mount(StepsButtonSubmit, wrapperOptions)
     wrapper.trigger('click')
     const buttonClickedCalls = wrapper.emitted('submit')

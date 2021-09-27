@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import BaseHeader from './BaseHeader.vue'
 
 describe('BaseHeader', () => {
-  test('is renderable', () => {
+  test('shall be renderable', () => {
     const wrapper = mount(BaseHeader, {
       propsData: {
         text: 'is renderable',
@@ -11,7 +11,7 @@ describe('BaseHeader', () => {
     expect(wrapper.find('[data-test="base-header"]').isVisible()).toBeTruthy()
   })
 
-  test('has text prop & renders it', () => {
+  test('shall have text prop & renders it', () => {
     const propText = 'This is prop test!'
     const wrapper = mount(BaseHeader, {
       propsData: {
@@ -21,7 +21,7 @@ describe('BaseHeader', () => {
     expect(wrapper.html()).toContain(propText)
   })
 
-  test('has type prop & renders it', () => {
+  test('shall have type prop & renders it', () => {
     const wrapper = mount(BaseHeader, {
       propsData: {
         text: 'Text',
@@ -31,7 +31,7 @@ describe('BaseHeader', () => {
     expect(wrapper.find('h3').isVisible()).toBeTruthy()
   })
 
-  test('has type prop safety validation', () => {
+  test('shall have type prop safety validation', () => {
     const wrapper = mount(BaseHeader, {
       propsData: {
         text: 'Text',
@@ -41,7 +41,7 @@ describe('BaseHeader', () => {
     expect(wrapper.find('h1').isVisible()).toBeTruthy()
   })
 
-  test('has type prop influence over class names', () => {
+  test('shall have type prop influence over class names', () => {
     const type = 3
     const wrapper = mount(BaseHeader, {
       propsData: {
