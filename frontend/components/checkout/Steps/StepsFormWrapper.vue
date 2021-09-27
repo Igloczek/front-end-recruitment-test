@@ -50,6 +50,7 @@ export default {
   box-shadow: var(--checkout-box-shadow);
   padding: 8px 12px;
   position: relative;
+  border: 1px solid transparent;
 }
 
 .steps-form-wrapper--error {
